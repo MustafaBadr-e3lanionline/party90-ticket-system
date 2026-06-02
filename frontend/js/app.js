@@ -143,3 +143,5 @@ bookingForm.addEventListener(
     "❌ حدث خطأ أثناء رفع الصورة";
 
 }
+}
+);
