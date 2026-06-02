@@ -1,1 +1,142 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
+body{
+    font-family: Arial, sans-serif;
+    background:#0f0f0f;
+    color:white;
+    line-height:1.6;
+}
+
+.hero{
+    min-height:100vh;
+    background:linear-gradient(
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.75)
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px;
+}
+
+.overlay{
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:20px;
+    color:#ffd54f;
+}
+
+.hero p{
+    font-size:1.2rem;
+    margin-bottom:40px;
+}
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.countdown div{
+    background:#1d1d1d;
+    padding:20px;
+    border-radius:12px;
+    min-width:100px;
+}
+
+.countdown span{
+    display:block;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 30px;
+    background:#ff4081;
+    color:white;
+    text-decoration:none;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:1rem;
+}
+
+.section{
+    padding:80px 20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.video-box{
+    height:400px;
+    background:#1a1a1a;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.video-card{
+    height:220px;
+    background:#1a1a1a;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.ticket-section{
+    text-align:center;
+}
+
+.ticket-card{
+    max-width:350px;
+    margin:auto;
+    background:#1a1a1a;
+    padding:30px;
+    border-radius:15px;
+}
+
+.price{
+    font-size:3rem;
+    color:#ffd54f;
+    margin:20px 0;
+}
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:2.5rem;
+    }
+
+    .countdown{
+        gap:10px;
+    }
+
+    .countdown div{
+        min-width:75px;
+    }
+
+}
