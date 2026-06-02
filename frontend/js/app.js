@@ -82,55 +82,64 @@ bookingForm.addEventListener(
             "party90_uploads"
         );
 
-        try {
+       try {
 
-           const imageUrl =
-data.secure_url;
+    const response =
+    await fetch(
+        "https://api.cloudinary.com/v1_1/dvjcpjjlh/image/upload",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
 
-const customerName =
-document.getElementById("customerName")
-.value;
+    const data =
+    await response.json();
 
-const phone =
-document.getElementById("phone")
-.value;
+    const imageUrl =
+    data.secure_url;
 
-const { error } =
-await supabaseClient
-.from("tickets")
-.insert([
-{
-    customer_name: customerName,
-    phone: phone,
-    payment_image: imageUrl,
-    payment_status: "pending",
-    used: false
-}
-]);
+    const customerName =
+    document.getElementById("customerName")
+    .value;
 
-if (error) {
+    const phone =
+    document.getElementById("phone")
+    .value;
+
+    const { error } =
+    await supabaseClient
+    .from("tickets")
+    .insert([
+        {
+            customer_name: customerName,
+            phone: phone,
+            payment_image: imageUrl,
+            payment_status: "pending",
+            used: false
+        }
+    ]);
+
+    if (error) {
+
+        console.error(error);
+
+        status.innerHTML =
+        "❌ حدث خطأ أثناء حفظ الحجز";
+
+    } else {
+
+        status.innerHTML =
+        "✅ تم تسجيل الحجز بنجاح";
+
+        bookingForm.reset();
+    }
+
+} catch (error) {
 
     console.error(error);
 
     status.innerHTML =
-    "❌ حدث خطأ أثناء حفظ الحجز";
+    "❌ حدث خطأ أثناء رفع الصورة";
 
-} else {
-
-    status.innerHTML =
-    "✅ تم تسجيل الحجز بنجاح";
-
-    bookingForm.reset();
 }
-
-        } catch (error) {
-
-            console.error(error);
-
-            status.innerHTML =
-            "❌ حدث خطأ أثناء رفع الصورة";
-
-        }
-
-    }
-);
