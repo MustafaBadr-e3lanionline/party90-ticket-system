@@ -139,4 +139,22 @@ body{
         min-width:75px;
     }
 
+    #bookingForm{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-top:20px;
+}
+
+#bookingForm input{
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+#statusMessage{
+    margin-top:20px;
+    font-weight:bold;
+}
 }
