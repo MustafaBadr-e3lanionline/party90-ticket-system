@@ -67,17 +67,46 @@
     <h2>سعر التذكرة</h2>
 
     <div class="ticket-card">
-      <h3>Regular Ticket</h3>
 
-      <div class="price">
-        350 EGP
-      </div>
+        <h3>Regular Ticket</h3>
 
-      <button class="btn">
-        احجز الآن
-      </button>
+        <div class="price">
+            350 EGP
+        </div>
+
+        <form id="bookingForm">
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="الاسم بالكامل"
+                required
+            >
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="رقم الهاتف"
+                required
+            >
+
+            <input
+                type="file"
+                id="paymentImage"
+                accept="image/*"
+                required
+            >
+
+            <button type="submit" class="btn">
+                تأكيد الحجز
+            </button>
+
+        </form>
+
+        <div id="statusMessage"></div>
+
     </div>
-  </section>
+</section>
 
   <script src="./js/app.js"></script>
 
