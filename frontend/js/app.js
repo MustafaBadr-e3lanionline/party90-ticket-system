@@ -1,3 +1,15 @@
+const SUPABASE_URL =
+"https://zougtuucbsgvgjrvkqgb.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_JC9p2r1TztFRwykpPGvGiA_VROtlkii";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
 const eventDate = new Date("July 17, 2026 18:00:00").getTime();
 
 function countdown() {
@@ -72,22 +84,44 @@ bookingForm.addEventListener(
 
         try {
 
-            const response =
-            await fetch(
-                "https://api.cloudinary.com/v1_1/dvjcpjjlh/image/upload",
-                {
-                    method: "POST",
-                    body: formData
-                }
-            );
+           const imageUrl =
+data.secure_url;
 
-            const data =
-            await response.json();
+const customerName =
+document.getElementById("customerName")
+.value;
 
-            console.log(data);
+const phone =
+document.getElementById("phone")
+.value;
 
-            status.innerHTML =
-            "✅ تم رفع الإيصال بنجاح";
+const { error } =
+await supabaseClient
+.from("tickets")
+.insert([
+{
+    customer_name: customerName,
+    phone: phone,
+    payment_image: imageUrl,
+    payment_status: "pending",
+    used: false
+}
+]);
+
+if (error) {
+
+    console.error(error);
+
+    status.innerHTML =
+    "❌ حدث خطأ أثناء حفظ الحجز";
+
+} else {
+
+    status.innerHTML =
+    "✅ تم تسجيل الحجز بنجاح";
+
+    bookingForm.reset();
+}
 
         } catch (error) {
 
