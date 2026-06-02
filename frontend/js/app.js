@@ -120,12 +120,12 @@ bookingForm.addEventListener(
         }
     ]);
 
-    if (error) {
+if (error) {
 
-        console.error(error);
+    console.error(error);
 
-        status.innerHTML =
-        "❌ حدث خطأ أثناء حفظ الحجز";
+    status.innerHTML =
+    "❌ " + error.message;
 
     } else {
 
