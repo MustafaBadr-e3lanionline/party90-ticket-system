@@ -1,1 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party90 Admin</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:#0f0f0f;
+            color:white;
+            font-family:Arial,sans-serif;
+            padding:20px;
+        }
+
+        h1{
+            margin-bottom:30px;
+            text-align:center;
+        }
+
+        .ticket{
+            background:#1a1a1a;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:20px;
+        }
+
+        .ticket img{
+            width:100%;
+            max-width:350px;
+            border-radius:10px;
+            margin-top:10px;
+        }
+
+        .actions{
+            margin-top:15px;
+            display:flex;
+            gap:10px;
+        }
+
+        button{
+            border:none;
+            padding:10px 15px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        .approve{
+            background:#28a745;
+            color:white;
+        }
+
+        .reject{
+            background:#dc3545;
+            color:white;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h1>Party90 Admin Dashboard</h1>
+
+    <div id="ticketsContainer"></div>
+
+<script>
+
+const SUPABASE_URL =
+"https://zougtuucbsgvgjrvkqgb.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_JC9p2r1TztFRwykpPGvGiA_VROtlkii";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+async function loadTickets(){
+
+    const container =
+    document.getElementById(
+        "ticketsContainer"
+    );
+
+    const { data, error } =
+    await supabaseClient
+    .from("tickets")
+    .select("*")
+    .order("created_at",{
+        ascending:false
+    });
+
+    if(error){
+
+        container.innerHTML =
+        "خطأ في تحميل البيانات";
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    data.forEach(ticket=>{
+
+        container.innerHTML += `
+            <div class="ticket">
+
+                <h3>${ticket.customer_name}</h3>
+
+                <p>
+                    ${ticket.phone}
+                </p>
+
+                <p>
+                    Status:
+                    ${ticket.payment_status}
+                </p>
+
+                <img src="${ticket.payment_image}">
+
+                <div class="actions">
+
+                    <button
+                        class="approve"
+                        onclick="approveTicket('${ticket.id}')"
+                    >
+                        موافقة
+                    </button>
+
+                    <button
+                        class="reject"
+                        onclick="rejectTicket('${ticket.id}')"
+                    >
+                        رفض
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+    });
+
+}
+
+async function approveTicket(id){
+
+    await supabaseClient
+    .from("tickets")
+    .update({
+        payment_status:"approved",
+        approved_at:new Date()
+            .toISOString()
+    })
+    .eq("id",id);
+
+    loadTickets();
+
+}
+
+async function rejectTicket(id){
+
+    await supabaseClient
+    .from("tickets")
+    .update({
+        payment_status:"rejected"
+    })
+    .eq("id",id);
+
+    loadTickets();
+
+}
+
+loadTickets();
+
+</script>
+
+</body>
+</html>
