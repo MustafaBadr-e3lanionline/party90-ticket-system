@@ -1,14 +1,11 @@
-const eventDate = new Date("July 17, 2026 20:00:00").getTime();
+const eventDate = new Date("July 17, 2026 18:00:00").getTime();
 
-const countdown = () => {
+function countdown() {
 
     const now = new Date().getTime();
-
     const distance = eventDate - now;
 
-    const days = Math.floor(
-        distance / (1000 * 60 * 60 * 24)
-    );
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
     const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) /
@@ -36,9 +33,70 @@ const countdown = () => {
 
     document.getElementById("seconds").textContent =
         String(seconds).padStart(2, "0");
-
-};
+}
 
 countdown();
-
 setInterval(countdown, 1000);
+
+const bookingForm =
+document.getElementById("bookingForm");
+
+bookingForm.addEventListener(
+    "submit",
+    async function (e) {
+
+        e.preventDefault();
+
+        const status =
+        document.getElementById("statusMessage");
+
+        status.innerHTML =
+        "جاري رفع صورة الإيصال...";
+
+        const file =
+        document.getElementById("paymentImage")
+        .files[0];
+
+        const formData =
+        new FormData();
+
+        formData.append(
+            "file",
+            file
+        );
+
+        formData.append(
+            "upload_preset",
+            "party90_uploads"
+        );
+
+        try {
+
+            const response =
+            await fetch(
+                "https://api.cloudinary.com/v1_1/dvjcpjjlh/image/upload",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+            const data =
+            await response.json();
+
+            console.log(data);
+
+            status.innerHTML =
+            "✅ تم رفع الإيصال بنجاح";
+
+        } catch (error) {
+
+            console.error(error);
+
+            status.innerHTML =
+            "❌ حدث خطأ أثناء رفع الصورة";
+
+        }
+
+    }
+);
