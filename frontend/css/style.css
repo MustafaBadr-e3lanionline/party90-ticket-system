@@ -300,3 +300,47 @@ body{
     }
 
 }
+/* =========================
+   SOCIAL MEDIA
+========================= */
+
+.social-section{
+    text-align:center;
+}
+
+.social-links{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.social-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 28px;
+    border-radius:12px;
+    text-decoration:none;
+    color:#fff;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.social-btn img{
+    width:28px;
+    height:28px;
+}
+
+.facebook{
+    background:#1877f2;
+}
+
+.tiktok{
+    background:#111111;
+    border:1px solid #333;
+}
+
+.social-btn:hover{
+    transform:translateY(-3px);
+}
