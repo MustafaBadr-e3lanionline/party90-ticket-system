@@ -292,16 +292,25 @@ body{
     }
 
     .video-showcase{
-        flex-direction:column;
-    }
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    gap:12px;
+    justify-content:flex-start;
+    padding-bottom:10px;
+}
 
-    .video-side,
-    .video-center{
-        width:100%;
-        max-width:360px;
-        transform:none;
-    }
+.video-side{
+    flex:0 0 140px;
+    width:140px;
+}
 
+.video-center{
+    flex:0 0 170px;
+    width:170px;
+    transform:none;
+}
     .ticket-card{
         padding:25px;
     }
