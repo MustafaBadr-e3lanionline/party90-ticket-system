@@ -176,3 +176,16 @@ body{
     font-weight:bold;
 }
 }
+
+.event-info{
+    background:#151515;
+    padding:25px;
+    border-radius:16px;
+    text-align:right;
+    line-height:2;
+    font-size:18px;
+}
+
+.event-info p{
+    margin-bottom:10px;
+}
