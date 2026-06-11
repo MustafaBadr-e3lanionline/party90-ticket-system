@@ -125,6 +125,17 @@ body{
     align-items:center;
 }
 
+.video-card{
+    background:#151515;
+    border-radius:18px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.video-card video{
+    width:100%;
+    display:block;
+}
 .ticket-section{
     text-align:center;
 }
