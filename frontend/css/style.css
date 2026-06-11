@@ -120,6 +120,13 @@ body{
     margin-bottom:40px;
     color:#ffffff;
 }
+.section-subtitle{
+    text-align:center;
+    color:#cfcfcf;
+    margin-top:-20px;
+    margin-bottom:35px;
+    font-size:18px;
+}
 
 /* =========================
    PROMO VIDEO
