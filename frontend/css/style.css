@@ -38,7 +38,25 @@ body{
     font-size:1.2rem;
     margin-bottom:40px;
 }
+.hero{
+    position:relative;
+    overflow:hidden;
+}
 
+.hero-logo{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:320px;
+    opacity:0.12;
+    z-index:0;
+}
+
+.overlay{
+    position:relative;
+    z-index:2;
+}
 .countdown{
     display:flex;
     justify-content:center;
